@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PatchBook — Patch-test scheduling, photo consent & touch-up tracking for PMU artists</title>
+  <meta name="description" content="Automated patch-test scheduling, digital consent forms, and touch-up reminders for PMU and microblading artists. Stop juggling client workflows in your DMs." />
+  <meta property="og:url" content="https://patchbook.leanaistudio.com" />
+  <link rel="canonical" href="https://patchbook.leanaistudio.com" />
+
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Google Ads gtag — Consent Mode v2 (GDPR-safe) -->
+  <script>
+    var gtagLoaded = false;
+    function loadGtag() {
+      if (gtagLoaded) return;
+      gtagLoaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){dataLayer.push(arguments);};
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      if (localStorage.getItem('cookie_consent') === 'accepted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          analytics_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
+        });
+      }
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18071371531';
+      s.async = true;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'AW-18071371531');
+    }
+    function grantConsent() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      loadGtag();
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          analytics_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
+        });
+      }
+    }
+    loadGtag();
+    document.addEventListener('DOMContentLoaded', function() {
+      var consent = localStorage.getItem('cookie_consent');
+      if (consent === 'accepted') {
+        grantConsent();
+      }
+    });
+  </script>
+
+  <!-- Calendly popup widget -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Fonts — Space Grotesk (headlines) + DM Sans (body) + JetBrains Mono (accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: #070d14; color: #e8f0f8; margin: 0; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Space Grotesk', system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    .accent { color: #a855f7; }
+    .border-line { border-top: 1px solid #0f1f2e; }
+
+    input, select, textarea { background: #0d1a26; border: 1px solid #0f1f2e; color: #e8f0f8; outline: none; border-radius: 0.375rem; }
+    input:focus, select:focus, textarea:focus { border-color: rgba(168,85,247,0.5); box-shadow: 0 0 0 1px rgba(168,85,247,0.25); }
+    ::placeholder { color: #94a8b8; }
+
+    .card { background: #0b1723; border: 1px solid #0f1f2e; border-radius: 0.5rem; }
+    .tag { background: transparent; border: 1px solid #0f1f2e; color: #94a8b8; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em; padding: 0.3rem 0.65rem; border-radius: 0.25rem; }
+
+    .btn-primary { background: #a855f7; color: #070d14; font-weight: 700; border-radius: 0.375rem; padding: 0 2rem; height: 3rem; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; transition: background 0.15s; font-family: 'Space Grotesk', sans-serif; cursor: pointer; border: none; }
+    .btn-primary:hover { background: #9333ea; }
+    .btn-ghost { color: #94a8b8; padding: 0 1rem; height: 3rem; display: inline-flex; align-items: center; font-size: 1rem; text-decoration: none; transition: color 0.15s; }
+    .btn-ghost:hover { color: #e8f0f8; }
+
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .step-icon { width: 2.25rem; height: 2.25rem; background: rgba(168,85,247,0.1); border-radius: 0.375rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    @media (max-width: 768px) { .hide-mobile { display: none !important; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV / LOGO -->
+  <div style="max-width:1120px;margin:0 auto;padding:1.5rem 2rem 0;">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:#e8f0f8;letter-spacing:-0.01em;">PatchBook</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="max-width:1120px;margin:0 auto;padding:4rem 2rem 4rem;position:relative;">
+    <div style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid #0f1f2e;border-radius:0.25rem;padding:0.3rem 0.75rem;color:#94a8b8;font-size:0.8rem;margin-bottom:2rem;font-family:'JetBrains Mono',monospace;">
+      <span style="color:#a855f7;">→</span> Early Access Open · Free to join
+    </div>
+
+    <div style="max-width:780px;">
+      <h1 style="font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.08;font-weight:700;letter-spacing:-0.025em;margin-bottom:1.5rem;color:#e8f0f8;">
+        Stop juggling patch tests, consent forms, and touch-up reminders in your DMs. <span style="color:#a855f7;">One app. Every client tracked.</span>
+      </h1>
+      <p style="font-size:clamp(1.05rem,2vw,1.2rem);color:#94a8b8;line-height:1.7;max-width:600px;margin-bottom:2.5rem;">
+        Built for PMU and microblading artists who lose track of patch-test windows, paper consent forms, and touch-up scheduling. PatchBook automates the compliance workflow so you focus on artistry.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
+        <a href="#waitlist" class="btn-primary">Get Early Access</a>
+        <a href="#how-it-works" class="btn-ghost">See how it works ↓</a>
+      </div>
+    </div>
+
+    <!-- Desktop accent — Client record preview -->
+    <div class="hide-mobile card" style="position:absolute;right:2rem;top:50%;transform:translateY(-50%);width:280px;padding:1.25rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#94a8b8;">
+      <div style="color:#a855f7;margin-bottom:0.75rem;">// client_record.json</div>
+      <div><span style="color:#9333ea;">client_name:</span> <span style="color:#e8f0f8;">"Sarah M."</span></div>
+      <div><span style="color:#9333ea;">patch_test_date:</span> <span style="color:#e8f0f8;">"2026-04-20"</span></div>
+      <div><span style="color:#9333ea;">consent_signed:</span> <span style="color:#e8f0f8;">true</span></div>
+      <div><span style="color:#9333ea;">touch_up_due:</span> <span style="color:#e8f0f8;">"2026-05-15"</span></div>
+      <div><span style="color:#9333ea;">status:</span> <span style="color:#e8f0f8;">"cleared ✓"</span></div>
+      <div style="margin-top:0.75rem;color:#a855f7;">→ auto-reminder sent</div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD MOCKUP -->
+  <section class="border-line" style="padding:3rem 2rem 5rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1.5rem;text-align:center;">Early preview</p>
+
+      <!-- Browser chrome frame -->
+      <div style="max-width:900px;margin:0 auto;border:1px solid #0f1f2e;border-radius:0.75rem;overflow:hidden;background:#0b1723;">
+        <!-- Title bar -->
+        <div style="display:flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;background:#0a1420;border-bottom:1px solid #0f1f2e;">
+          <div style="display:flex;gap:0.375rem;">
+            <span style="width:10px;height:10px;border-radius:50%;background:#374151;"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#374151;"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#374151;"></span>
+          </div>
+          <div style="flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#64748b;">patchbook.leanaistudio.com/dashboard</div>
+        </div>
+        <!-- Dashboard content -->
+        <div style="padding:1.5rem;display:grid;grid-template-columns:180px 1fr;gap:1.5rem;">
+          <!-- Sidebar -->
+          <div style="display:flex;flex-direction:column;gap:0.25rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;">
+            <div style="padding:0.5rem 0.75rem;border-radius:0.25rem;background:rgba(168,85,247,0.08);color:#a855f7;font-weight:500;">Dashboard</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">Clients</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">Patch Tests</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">Consents</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">Touch-ups</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">Reports</div>
+          </div>
+          <!-- Main area -->
+          <div>
+            <!-- KPI row -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:1.5rem;">
+              <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Active Clients</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">34</div>
+                <div style="font-size:0.65rem;color:#22c55e;">this month</div>
+              </div>
+              <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Pending Patch Tests</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">8</div>
+                <div style="font-size:0.65rem;color:#f97316;">due this week</div>
+              </div>
+              <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Consents Signed</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">97%</div>
+                <div style="font-size:0.65rem;color:#22c55e;">complete</div>
+              </div>
+              <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Touch-ups Due</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">5</div>
+                <div style="font-size:0.65rem;color:#f97316;">next 2 weeks</div>
+              </div>
+            </div>
+            <!-- Mini table -->
+            <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;overflow:hidden;">
+              <div style="padding:0.75rem 1rem;border-bottom:1px solid #0f1f2e;font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;color:#e8f0f8;">Recent Clients</div>
+              <table style="width:100%;border-collapse:collapse;font-size:0.75rem;">
+                <thead>
+                  <tr style="border-bottom:1px solid #0f1f2e;">
+                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Client Name</th>
+                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Patch Test</th>
+                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Consent</th>
+                    <th style="text-align:right;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid #0f1f2e;">
+                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Sarah M.</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">2026-04-20</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">Signed</td>
+                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(34,197,94,0.1);color:#22c55e;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Cleared</span></td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #0f1f2e;">
+                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Jessica R.</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">2026-04-22</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">Pending</td>
+                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(249,115,22,0.1);color:#f97316;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Awaiting</span></td>
+                  </tr>
+                  <tr>
+                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Mia K.</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">2026-04-25</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">Signed</td>
+                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(34,197,94,0.1);color:#22c55e;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Cleared</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:0.8rem;color:#64748b;margin-top:1rem;font-style:italic;">Early preview of the PatchBook dashboard</p>
+    </div>
+  </section>
+
+  <!-- PAIN SECTION -->
+  <section class="border-line" style="padding:5rem 2rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">The problem</p>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.015em;max-width:660px;margin-bottom:4rem;color:#e8f0f8;">
+        PMU compliance workflows are scattered across DMs, notes, and paper forms.
+      </h2>
+
+      <div class="grid-auto" style="gap:3rem;">
+        <div>
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">01</span>
+          <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
+            <strong style="color:#e8f0f8;">Missed patch tests = liability.</strong> You schedule a patch test but lose track of the 48-hour window. Client books before results are confirmed. Now you're scrambling to reschedule and document everything.
+          </p>
+        </div>
+        <div>
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">02</span>
+          <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
+            <strong style="color:#e8f0f8;">Paper consent forms get lost.</strong> You email a form, client prints it, signs it, but never sends it back. You have no proof of consent, and your liability insurance doesn't cover it.
+          </p>
+        </div>
+        <div>
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">03</span>
+          <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
+            <strong style="color:#e8f0f8;">Touch-up reminders fall through the cracks.</strong> You manually track when clients need touch-ups, but by week 6 you've forgotten. Clients don't book their follow-ups, and you leave money on the table.
+          </p>
+        </div>
+        <div>
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">04</span>
+          <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
+            <strong style="color:#e8f0f8;">No single view of every client's status.</strong> You switch between Instagram DMs, text, booking tool, and a spreadsheet. You never know who's completed what, and compliance audits are a nightmare.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="border-line" style="padding:5rem 2rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">How it works</p>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.015em;max-width:600px;margin-bottom:4rem;color:#e8f0f8;">
+        Three simple steps to compliance done.
+      </h2>
+
+      <div class="grid-auto" style="gap:1.5rem;">
+        <div class="card" style="padding:2rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+            <div class="step-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;">Step 1</span>
+          </div>
+          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Client books → auto-schedule patch test</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">When a client books in your calendar, PatchBook automatically schedules their patch test 48 hours before the appointment. You get a notification, and the client gets a confirmation text with the date and instructions.</p>
+        </div>
+        <div class="card" style="padding:2rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+            <div class="step-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;">Step 2</span>
+          </div>
+          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Digital consent form sent via text</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">PatchBook sends a digital consent form to your client's phone. They sign on their device, you get a timestamped record, and it's stored securely. No lost paperwork, full compliance audit trail.</p>
+        </div>
+        <div class="card" style="padding:2rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+            <div class="step-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </div>
+            <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;">Step 3</span>
+          </div>
+          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Touch-up reminders sent automatically</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">4-6 weeks after the appointment, PatchBook automatically sends your client a reminder to book their touch-up. They reply with their availability, and you recover those touch-up bookings without lifting a finger.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IS THIS FOR -->
+  <section class="border-line" style="padding:5rem 2rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">Built for</p>
+      <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.015em;max-width:600px;margin-bottom:4rem;color:#e8f0f8;">
+        PMU and microblading artists who take compliance seriously
+      </h2>
+
+      <div class="grid-2col" style="gap:1.5rem;margin-bottom:2rem;">
+        <div class="card" style="padding:2rem;">
+          <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;display:block;margin-bottom:1rem;">Solo artists & small teams</span>
+          <h3 style="font-size:1.15rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">You need automation, not bureaucracy</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">PatchBook is built for studios with 1-3 artists. It automates the compliance work without requiring a ton of setup. No admin overhead, just workflow magic that runs in the background.</p>
+        </div>
+        <div class="card" style="padding:2rem;">
+          <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;display:block;margin-bottom:1rem;">Serious about your brand</span>
+          <h3 style="font-size:1.15rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Compliance is part of your promise</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">You know that patch tests, consent, and touch-ups aren't optional—they're the foundation of client safety and your reputation. PatchBook turns that into a documented system your insurance company will love.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:0.65rem;">
+        <span class="tag">pmu-artists</span>
+        <span class="tag">microblading</span>
+        <span class="tag">patch-testing</span>
+        <span class="tag">consent-forms</span>
+        <span class="tag">touch-up-tracking</span>
+        <span class="tag">compliance-automation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST / CTA SECTION -->
+  <section id="waitlist" class="border-line" style="padding:5rem 2rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <div class="grid-2col" style="gap:3rem 5rem;align-items:start;">
+        <div>
+          <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">Early access · Limited spots</p>
+          <h2 style="font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:700;letter-spacing:-0.02em;color:#e8f0f8;margin-bottom:1.25rem;line-height:1.2;">
+            Automate your PMU compliance workflow.
+          </h2>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.7;max-width:440px;margin-bottom:2rem;">
+            We are onboarding a small group of PMU and microblading artists to test PatchBook before full launch. Join the waitlist and you will be the first to know when early access opens.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:0.875rem;font-size:0.875rem;">
+            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Free during early access</p>
+            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Your feedback shapes the product</p>
+            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>No credit card required</p>
+            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>First to know when we launch</p>
+          </div>
+        </div>
+
+        <div>
+          <div id="success-message" style="display:none;padding:2.5rem 0;">
+            <div style="width:3rem;height:3rem;background:rgba(168,85,247,0.1);border-radius:0.375rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2 style="font-size:1.5rem;font-weight:700;color:#e8f0f8;margin-bottom:0.75rem;">You are on the list!</h2>
+            <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;margin:0;">We will email you when early access opens. Keep an eye on your inbox.</p>
+          </div>
+
+          <form id="signup-form" onsubmit="handleSubmit(event)" style="display:flex;flex-direction:column;gap:1.25rem;">
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">Work email <span style="color:#a855f7;">*</span></label>
+              <input id="email" type="email" required placeholder="you@studio.com" style="width:100%;height:2.75rem;padding:0 1rem;font-size:1rem;box-sizing:border-box;" />
+            </div>
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">First name</label>
+              <input id="first-name" type="text" placeholder="Sarah" style="width:100%;height:2.75rem;padding:0 1rem;font-size:1rem;box-sizing:border-box;" />
+            </div>
+
+            <!-- Progressive qualifying questions -->
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">How many clients per month?</label>
+              <select id="q-team-size" style="width:100%;height:2.75rem;padding:0 0.75rem;font-size:1rem;box-sizing:border-box;cursor:pointer;">
+                <option value="" disabled selected>Select your volume</option>
+                <option value="1-10">1-10 clients</option>
+                <option value="11-25">11-25 clients</option>
+                <option value="26-50">26-50 clients</option>
+                <option value="50+">50+ clients</option>
+              </select>
+            </div>
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">Biggest workflow headache?</label>
+              <select id="q-pain" style="width:100%;height:2.75rem;padding:0 0.75rem;font-size:1rem;box-sizing:border-box;cursor:pointer;">
+                <option value="" disabled selected>Select your top challenge</option>
+                <option value="patch-test-tracking">Patch test tracking</option>
+                <option value="consent-forms">Consent forms</option>
+                <option value="touch-up-scheduling">Touch-up scheduling</option>
+                <option value="all-of-above">All of the above</option>
+              </select>
+            </div>
+            <button type="submit" id="submit-btn" class="btn-primary" style="width:100%;height:3rem;font-size:1rem;">
+              Get Early Access
+            </button>
+            <p style="font-size:0.75rem;color:rgba(180,210,230,0.65);text-align:center;margin:0;">By signing up you accept our <a href="/privacy.html" style="color:#38bdf8;text-decoration:underline;">Privacy Policy</a> and analytics cookies. No spam — we will only contact you about PatchBook.</p>
+
+            <!-- Inline "Book a call with the founder" -->
+            <div id="inline-booking" onclick="openCalendly(event)" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:1rem;padding:0.75rem 1rem;border:1px solid #0f1f2e;border-radius:0.5rem;background:rgba(11,23,35,0.3);cursor:pointer;opacity:1;transition:opacity 0.2s,background 0.15s;" onmouseover="this.style.background='rgba(11,23,35,0.5)'" onmouseout="this.style.background='rgba(11,23,35,0.3)'">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span style="font-size:0.875rem;font-weight:600;color:#a855f7;">Book a call with the founder</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER + INCUBATOR BADGE -->
+  <section style="padding:2.5rem 2rem 0;">
+    <div style="max-width:1120px;margin:0 auto;text-align:center;">
+      <div style="display:inline-flex;align-items:center;gap:1rem;padding:1rem 1.5rem;border:1px solid rgba(255,255,255,0.06);border-radius:0.5rem;background:rgba(255,255,255,0.02);">
+        <img src="https://leanaistudio.com/founder.jpeg" alt="Dario Verghi" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);" />
+        <div style="text-align:left;">
+          <p style="margin:0;font-size:0.875rem;color:#e8f0f8;font-weight:600;">A project by <a href="https://leanaistudio.com" target="_blank" rel="noopener" style="color:#a855f7;text-decoration:none;">LeanAI Studio</a>, built by <a href="https://www.linkedin.com/in/verghi/" target="_blank" rel="noopener" style="color:#a855f7;text-decoration:none;">Dario Verghi</a></p>
+          <p style="margin:0.25rem 0 0;font-size:0.8125rem;color:#94a8b8;line-height:1.5;">Building focused tools for underserved B2B niches. We ship this if 50 people sign up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-line" style="padding:2.5rem 2rem;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:1.25rem;margin-bottom:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.875rem;color:#e8f0f8;">PatchBook</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;font-size:0.75rem;color:rgba(180,210,230,0.7);">
+          <a href="mailto:info@leanaistudio.com" style="color:inherit;text-decoration:none;" onmouseover="this.style.color='#94a8b8'" onmouseout="this.style.color='rgba(180,210,230,0.7)'">info@leanaistudio.com</a>
+          <a href="/privacy.html" style="color:inherit;text-decoration:none;" onmouseover="this.style.color='#94a8b8'" onmouseout="this.style.color='rgba(180,210,230,0.7)'">Privacy Policy</a>
+          <a href="/terms.html" style="color:inherit;text-decoration:none;" onmouseover="this.style.color='#94a8b8'" onmouseout="this.style.color='rgba(180,210,230,0.7)'">Terms of Service</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid #0f1f2e;padding-top:1rem;font-size:0.7rem;color:rgba(180,210,230,0.5);line-height:1.8;">
+        <p style="margin:0;">© 2026 LeanAI Studio srl — P.IVA/CF: 14561020968</p>
+        <p style="margin:0;">PatchBook is a product of LeanAI Studio srl</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function getUTMParams() {
+      var params = new URLSearchParams(window.location.search);
+      var utm = {};
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k) {
+        var v = params.get(k);
+        if (v) utm[k] = v;
+      });
+      return utm;
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      // Grant consent on submit — user is voluntarily engaging, enable full tracking
+      grantConsent();
+      var btn = document.getElementById('submit-btn');
+      btn.textContent = 'Joining...';
+      btn.disabled = true;
+
+      var utm = getUTMParams();
+      var email = document.getElementById('email').value;
+      var firstName = document.getElementById('first-name').value;
+      var teamSize = document.getElementById('q-team-size').value || '';
+      var pain = document.getElementById('q-pain').value || '';
+
+      var payload = {
+        secret: 'pb_7k3m9n2w5t8r',
+        product: 'PatchBook',
+        email: email,
+        first_name: firstName,
+        source: 'PatchBook',
+        traffic_source: utm.utm_source || 'direct',
+        team_size: teamSize,
+        pain: pain,
+        submitted_at: new Date().toISOString(),
+        page_url: window.location.href
+      };
+      Object.assign(payload, utm);
+
+      try {
+        await fetch('/api/slack-notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: '*[PatchBook]* New waitlist signup!\n*Email:* ' + email + '\n*Name:* ' + (firstName || 'n/a') + '\n*Product:* PatchBook\n*Volume:* ' + (teamSize || 'n/a') + '\n*Pain:* ' + (pain || 'n/a') + '\n*Traffic Source:* ' + (utm.utm_source || 'direct')
+          })
+        });
+      } catch(ex) {}
+
+      try {
+        await fetch('/api/sheet-notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch(ex) {}
+
+      try { if (window.va) window.va('event', { name: 'waitlist-signup', data: { product: 'PatchBook', source: 'PatchBook', traffic_source: utm.utm_source || 'direct' } }); } catch(ex) {}
+
+      try {
+        await fetch('/api/resend-notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, first_name: firstName, product: 'PatchBook' })
+        });
+      } catch(ex) {}
+
+      try { if (typeof gtag === 'function') gtag('event', 'conversion', { send_to: 'AW-18071371531/z6DhCLq9-JccEIv-jKlD', value: 1.0, currency: 'USD' }); } catch(ex) {}
+
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('success-message').style.display = 'block';
+    }
+
+    var CALENDLY_URL = 'https://calendly.com/leanaistudio/30min';
+    function openCalendly(e) {
+      e.preventDefault();
+      grantConsent();
+      if (window.Calendly) {
+        Calendly.initPopupWidget({ url: CALENDLY_URL + '?utm_source=' + encodeURIComponent(document.title.split(' ')[0]) + '&utm_medium=lp&utm_campaign=founder-call' });
+      }
+      return false;
+    }
+      if (window.Calendly) {
+        Calendly.initPopupWidget({ url: CALENDLY_URL + '?utm_source=PatchBook&utm_medium=lp&utm_campaign=founder-call' });
+      }
+      return false;
+    }
+  </script>
+
+  <!-- FLOATING "BOOK A CALL" BADGE -->
+  <a id="floating-booking" href="#" onclick="return openCalendly(event)" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;padding:12px 20px;background:#070d14;color:#e8f0f8;border:1px solid #0f1f2e;border-radius:50px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:all 0.2s ease;text-decoration:none;opacity:1;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 28px rgba(0,0,0,0.4)';this.style.background='#0b1723'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.3)';this.style.background='#070d14'">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Book a Call with the Founder
+  </a>
+  </div>
+
+</body>
+</html>
