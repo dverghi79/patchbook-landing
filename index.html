@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PatchBook — Patch-test scheduling, photo consent & touch-up tracking for PMU artists</title>
-  <meta name="description" content="Automated patch-test scheduling, digital consent forms, and touch-up reminders for PMU and microblading artists. Stop juggling client workflows in your DMs." />
-  <meta property="og:description" content="Automated patch-test scheduling, digital consent forms, and touch-up reminders for PMU and microblading artists. Stop juggling client workflows in your DMs." />
+  <title>PatchBook — Cross-client patch visibility for MSPs managing compliance at scale</title>
+  <meta name="description" content="See which endpoints are unpatched across every client, right now. PatchBook gives MSPs real-time patch visibility, CVE alerts, and audit-ready compliance tracking." />
+  <meta property="og:description" content="See which endpoints are unpatched across every client, right now. PatchBook gives MSPs real-time patch visibility, CVE alerts, and audit-ready compliance tracking." />
   <meta property="og:url" content="https://patchbook.leanaistudio.com" />
   <link rel="canonical" href="https://patchbook.leanaistudio.com" />
 
@@ -123,45 +123,52 @@
 
     <!-- CRO: Unfair Advantage killer line -->
     <div style="display:inline-flex;align-items:center;gap:0.5rem;border:1px solid rgba(168,85,247,0.2);border-radius:0.25rem;padding:0.3rem 0.75rem;color:#a855f7;font-size:0.8rem;margin-bottom:1rem;font-family:'JetBrains Mono',monospace;font-weight:600;">
-      Cross-client patch visibility from your existing RMM. No new agents.
+      Most MSPs find out after a breach. You'll know before.
     </div>
 
     <div style="max-width:780px;">
       <h1 style="font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.08;font-weight:700;letter-spacing:-0.025em;margin-bottom:1.5rem;color:#e8f0f8;">
-        Every day without patch visibility is a breach waiting to happen. <span style="color:#a855f7;">PatchBook shows you what's unpatched across every client, right now.</span>
+        Every day without patch visibility is a breach waiting to happen, and you won't know which client caused it. <span style="color:#a855f7;">PatchBook shows you what's unpatched across every client, right now.</span>
       </h1>
 
       <!-- dir-122: Scannable bullets replacing paragraph subheadline -->
       <ul style="list-style:none;padding:0;margin:0 0 2.5rem;max-width:600px;display:flex;flex-direction:column;gap:0.75rem;">
         <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:clamp(1.05rem,2vw,1.2rem);color:#94a8b8;line-height:1.6;">
           <span style="margin-top:0.6rem;width:6px;height:6px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>
-          Auto-schedule patch tests the moment a client books
+          Cross-client patch visibility from your existing RMM, no new agents
         </li>
         <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:clamp(1.05rem,2vw,1.2rem);color:#94a8b8;line-height:1.6;">
           <span style="margin-top:0.6rem;width:6px;height:6px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>
-          Digital consent forms sent via text, signed before they sit in your chair
+          Alerts on critical CVEs with risk level per client
         </li>
         <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:clamp(1.05rem,2vw,1.2rem);color:#94a8b8;line-height:1.6;">
           <span style="margin-top:0.6rem;width:6px;height:6px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>
-          Touch-up reminders sent automatically so no client falls through the cracks
+          Audit-ready compliance reports generated automatically
         </li>
       </ul>
 
       <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;">
-        <a href="#waitlist" class="btn-primary">Claim Your Spot, See Unpatched Systems Now</a>
-        <a href="#how-it-works" class="btn-ghost">See how it works ↓</a>
+        <a href="#waitlist" class="btn-primary">See Which Endpoints Are Unpatched Right Now</a>
+        <a href="#how-it-works" class="btn-ghost">See example alerts ↓</a>
+      </div>
+
+      <!-- CRO #4: Example alert preview -->
+      <div style="margin-top:2.5rem;max-width:560px;padding:1rem 1.25rem;border:1px solid rgba(168,85,247,0.15);border-radius:0.5rem;background:rgba(168,85,247,0.04);">
+        <p style="margin:0 0 0.35rem;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;">Example PatchBook Alert</p>
+        <p style="margin:0;font-size:0.9rem;color:#94a8b8;line-height:1.6;font-style:italic;">"<span style="color:#e8f0f8;font-weight:600;">Client: Acme Corp</span> — 12 endpoints unpatched — CVE-2026-1234 — high risk"</p>
+        <p style="margin:0.5rem 0 0;font-size:0.7rem;color:rgba(148,168,184,0.5);font-family:'JetBrains Mono',monospace;">Detected: Today, 9:15 AM · 3 clients affected · 28 endpoints flagged</p>
       </div>
     </div>
 
     <!-- Desktop accent — Client record preview -->
     <div class="hide-mobile card" style="position:absolute;right:2rem;top:50%;transform:translateY(-50%);width:280px;padding:1.25rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#94a8b8;">
-      <div style="color:#a855f7;margin-bottom:0.75rem;">// client_record.json</div>
-      <div><span style="color:#9333ea;">client_name:</span> <span style="color:#e8f0f8;">"Sarah M."</span></div>
-      <div><span style="color:#9333ea;">patch_test_date:</span> <span style="color:#e8f0f8;">"2026-04-20"</span></div>
-      <div><span style="color:#9333ea;">consent_signed:</span> <span style="color:#e8f0f8;">true</span></div>
-      <div><span style="color:#9333ea;">touch_up_due:</span> <span style="color:#e8f0f8;">"2026-05-15"</span></div>
-      <div><span style="color:#9333ea;">status:</span> <span style="color:#e8f0f8;">"cleared ✓"</span></div>
-      <div style="margin-top:0.75rem;color:#a855f7;">→ auto-reminder sent</div>
+      <div style="color:#a855f7;margin-bottom:0.75rem;">// patch_status.json</div>
+      <div><span style="color:#9333ea;">client:</span> <span style="color:#e8f0f8;">"Acme Corp"</span></div>
+      <div><span style="color:#9333ea;">endpoints:</span> <span style="color:#e8f0f8;">48</span></div>
+      <div><span style="color:#9333ea;">unpatched:</span> <span style="color:#e8f0f8;">12</span></div>
+      <div><span style="color:#9333ea;">critical_cves:</span> <span style="color:#e8f0f8;">3</span></div>
+      <div><span style="color:#9333ea;">risk_level:</span> <span style="color:#e8f0f8;">"HIGH"</span></div>
+      <div style="margin-top:0.75rem;color:#a855f7;">→ alert sent to technician</div>
     </div>
   </section>
 
@@ -200,9 +207,9 @@
           <div style="display:flex;flex-direction:column;gap:0.25rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;">
             <div style="padding:0.5rem 0.75rem;border-radius:0.25rem;background:rgba(168,85,247,0.08);color:#a855f7;font-weight:500;">Dashboard</div>
             <div style="padding:0.5rem 0.75rem;color:#64748b;">Clients</div>
-            <div style="padding:0.5rem 0.75rem;color:#64748b;">Patch Tests</div>
-            <div style="padding:0.5rem 0.75rem;color:#64748b;">Consents</div>
-            <div style="padding:0.5rem 0.75rem;color:#64748b;">Touch-ups</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">Endpoints</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">CVE Alerts</div>
+            <div style="padding:0.5rem 0.75rem;color:#64748b;">Compliance</div>
             <div style="padding:0.5rem 0.75rem;color:#64748b;">Reports</div>
           </div>
           <!-- Main area -->
@@ -210,56 +217,56 @@
             <!-- KPI row -->
             <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:1.5rem;">
               <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
-                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Active Clients</div>
-                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">34</div>
-                <div style="font-size:0.65rem;color:#22c55e;">this month</div>
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Total Endpoints</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">1,247</div>
+                <div style="font-size:0.65rem;color:#22c55e;">across 30 clients</div>
               </div>
               <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
-                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Pending Patch Tests</div>
-                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">8</div>
-                <div style="font-size:0.65rem;color:#f97316;">due this week</div>
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Unpatched</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">72</div>
+                <div style="font-size:0.65rem;color:#f97316;">need attention</div>
               </div>
               <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
-                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Consents Signed</div>
-                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">97%</div>
-                <div style="font-size:0.65rem;color:#22c55e;">complete</div>
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Patch Compliance</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">94%</div>
+                <div style="font-size:0.65rem;color:#f97316;">6% exposed</div>
               </div>
               <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;padding:1rem;">
-                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Touch-ups Due</div>
-                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">5</div>
-                <div style="font-size:0.65rem;color:#f97316;">next 2 weeks</div>
+                <div style="font-size:0.65rem;color:#64748b;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;margin-bottom:0.25rem;">Critical CVEs</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#e8f0f8;font-family:'Space Grotesk',sans-serif;">3</div>
+                <div style="font-size:0.65rem;color:#ef4444;">high risk</div>
               </div>
             </div>
             <!-- Mini table -->
             <div style="background:#0d1a26;border:1px solid #0f1f2e;border-radius:0.375rem;overflow:hidden;">
-              <div style="padding:0.75rem 1rem;border-bottom:1px solid #0f1f2e;font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;color:#e8f0f8;">Recent Clients</div>
+              <div style="padding:0.75rem 1rem;border-bottom:1px solid #0f1f2e;font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;color:#e8f0f8;">Unpatched Endpoints</div>
               <table style="width:100%;border-collapse:collapse;font-size:0.75rem;">
                 <thead>
                   <tr style="border-bottom:1px solid #0f1f2e;">
-                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Client Name</th>
-                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Patch Test</th>
-                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Consent</th>
-                    <th style="text-align:right;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Status</th>
+                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Client</th>
+                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">CVE</th>
+                    <th style="text-align:left;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Endpoints</th>
+                    <th style="text-align:right;padding:0.5rem 1rem;color:#64748b;font-weight:500;font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Risk</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr style="border-bottom:1px solid #0f1f2e;">
-                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Sarah M.</td>
-                    <td style="padding:0.5rem 1rem;color:#94a8b8;">2026-04-20</td>
-                    <td style="padding:0.5rem 1rem;color:#94a8b8;">Signed</td>
-                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(34,197,94,0.1);color:#22c55e;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Cleared</span></td>
+                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Acme Corp</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">CVE-2026-1234</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">12</td>
+                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(239,68,68,0.1);color:#ef4444;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Critical</span></td>
                   </tr>
                   <tr style="border-bottom:1px solid #0f1f2e;">
-                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Jessica R.</td>
-                    <td style="padding:0.5rem 1rem;color:#94a8b8;">2026-04-22</td>
-                    <td style="padding:0.5rem 1rem;color:#94a8b8;">Pending</td>
-                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(249,115,22,0.1);color:#f97316;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Awaiting</span></td>
+                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Bolt Industries</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">CVE-2026-0891</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">8</td>
+                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(249,115,22,0.1);color:#f97316;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">High</span></td>
                   </tr>
                   <tr>
-                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Mia K.</td>
-                    <td style="padding:0.5rem 1rem;color:#94a8b8;">2026-04-25</td>
-                    <td style="padding:0.5rem 1rem;color:#94a8b8;">Signed</td>
-                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(34,197,94,0.1);color:#22c55e;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Cleared</span></td>
+                    <td style="padding:0.5rem 1rem;color:#e8f0f8;">Summit LLC</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">CVE-2026-0567</td>
+                    <td style="padding:0.5rem 1rem;color:#94a8b8;">4</td>
+                    <td style="text-align:right;padding:0.5rem 1rem;"><span style="background:rgba(34,197,94,0.1);color:#22c55e;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.65rem;">Medium</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -276,9 +283,9 @@
     <p style="text-align:center;font-size:0.8rem;color:#64748b;margin-top:1rem;font-style:italic;">Early preview of the PatchBook dashboard</p>
     
       <!-- Callout overlays (desktop only, positioned over dashboard) -->
-      <div class="hide-mobile" style="position:absolute;top:160px;right:40px;background:#a855f7;color:#070d14;font-size:0.65rem;font-weight:700;padding:0.3rem 0.6rem;border-radius:0.25rem;font-family:'Space Grotesk',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(168,85,247,0.3);">Patch test auto-scheduled</div>
-      <div class="hide-mobile" style="position:absolute;top:240px;left:220px;background:#a855f7;color:#070d14;font-size:0.65rem;font-weight:700;padding:0.3rem 0.6rem;border-radius:0.25rem;font-family:'Space Grotesk',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(168,85,247,0.3);">Digital consent signed</div>
-      <div class="hide-mobile" style="position:absolute;bottom:80px;right:60px;background:#a855f7;color:#070d14;font-size:0.65rem;font-weight:700;padding:0.3rem 0.6rem;border-radius:0.25rem;font-family:'Space Grotesk',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(168,85,247,0.3);">Touch-up reminder sent</div>
+      <div class="hide-mobile" style="position:absolute;top:160px;right:40px;background:#a855f7;color:#070d14;font-size:0.65rem;font-weight:700;padding:0.3rem 0.6rem;border-radius:0.25rem;font-family:'Space Grotesk',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(168,85,247,0.3);">Unpatched endpoints flagged instantly</div>
+      <div class="hide-mobile" style="position:absolute;top:240px;left:220px;background:#a855f7;color:#070d14;font-size:0.65rem;font-weight:700;padding:0.3rem 0.6rem;border-radius:0.25rem;font-family:'Space Grotesk',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(168,85,247,0.3);">Risk level per client</div>
+      <div class="hide-mobile" style="position:absolute;bottom:80px;right:60px;background:#a855f7;color:#070d14;font-size:0.65rem;font-weight:700;padding:0.3rem 0.6rem;border-radius:0.25rem;font-family:'Space Grotesk',sans-serif;white-space:nowrap;box-shadow:0 2px 8px rgba(168,85,247,0.3);">Compliance gaps detected</div>
     </div>
   </section>
 
@@ -287,7 +294,7 @@
     <div style="max-width:1120px;margin:0 auto;">
       <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">The problem</p>
       <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.015em;max-width:660px;margin-bottom:1.25rem;color:#e8f0f8;">
-        That CVE from last Tuesday? It's still unpatched on 12 client endpoints. You don't know which ones.
+        That CVE from last Tuesday? It's still unpatched on 12 client endpoints. You don't know which ones. And you won't know until it's too late.
       </h2>
 
       <!-- dir-122 improvement #5: Aggressive pain subparagraph -->
@@ -299,25 +306,25 @@
         <div>
           <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">01</span>
           <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
-            <strong style="color:#e8f0f8;">Missed patch tests = liability.</strong> You schedule a patch test but lose track of the 48-hour window. Client books before results are confirmed. Now you're scrambling to reschedule and document everything.
+            <strong style="color:#e8f0f8;">Your RMM says 94% compliant. The breach is in the other 6%.</strong> You manage patching for 30 clients across 1,200 endpoints. But 94% means 72 machines are running with known vulnerabilities right now. You don't know which clients or which CVEs.
           </p>
         </div>
         <div>
           <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">02</span>
           <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
-            <strong style="color:#e8f0f8;">Paper consent forms get lost.</strong> You email a form, client prints it, signs it, but never sends it back. You have no proof of consent, and your liability insurance doesn't cover it.
+            <strong style="color:#e8f0f8;">No cross-client visibility.</strong> Each client's patch status lives in a different RMM view. You have no single pane of glass showing which clients are exposed, which CVEs are critical, or which endpoints need immediate attention.
           </p>
         </div>
         <div>
           <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">03</span>
           <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
-            <strong style="color:#e8f0f8;">Touch-up reminders fall through the cracks.</strong> You manually track when clients need touch-ups, but by week 6 you've forgotten. Clients don't book their follow-ups, and you leave money on the table.
+            <strong style="color:#e8f0f8;">Compliance audits are a scramble.</strong> When a client asks for proof of patch compliance, you spend hours pulling reports from multiple tools. By the time you assemble the data, it's already stale.
           </p>
         </div>
         <div>
           <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(168,85,247,0.45);margin-bottom:0.75rem;">04</span>
           <p style="font-size:1rem;color:#94a8b8;line-height:1.7;">
-            <strong style="color:#e8f0f8;">No single view of every client's status.</strong> You switch between Instagram DMs, text, booking tool, and a spreadsheet. You never know who's completed what, and compliance audits are a nightmare.
+            <strong style="color:#e8f0f8;">Breaches don't announce themselves.</strong> The client won't ask about your 94% compliance rate. They'll ask why that one machine wasn't patched. And by then, the damage is done.
           </p>
         </div>
       </div>
@@ -329,7 +336,7 @@
     <div style="max-width:1120px;margin:0 auto;">
       <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">How it works</p>
       <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.015em;max-width:600px;margin-bottom:4rem;color:#e8f0f8;">
-        Three simple steps to compliance done.
+        Connect your RMM. See every gap. Sleep at night.
       </h2>
 
       <div class="grid-auto" style="gap:1.5rem;">
@@ -342,8 +349,8 @@
             </div>
             <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;">Step 1</span>
           </div>
-          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">See exactly which endpoints are exposed and which CVEs are unpatched, now</h3>
-          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">When a client books in your calendar, PatchBook automatically schedules their patch test 48 hours before the appointment. You get a notification, and the client gets a confirmation text with the date and instructions.</p>
+          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Know exactly where you're exposed right now</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">PatchBook connects to your existing RMM and pulls patch status across every client and endpoint. No new agents to deploy. Setup takes under 5 minutes.</p>
         </div>
         <div class="card" style="padding:2rem;">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
@@ -354,8 +361,8 @@
             </div>
             <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;">Step 2</span>
           </div>
-          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Know which clients are at risk before a breach forces the conversation</h3>
-          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">PatchBook sends a digital consent form to your client's phone. They sign on their device, you get a timestamped record, and it's stored securely. No lost paperwork, full compliance audit trail.</p>
+          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Walk into every client conversation with answers</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">PatchBook alerts you to critical CVEs with risk level per client. You see which endpoints are exposed, which patches are missing, and what to prioritize first.</p>
         </div>
         <div class="card" style="padding:2rem;">
           <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
@@ -366,8 +373,8 @@
             </div>
             <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;">Step 3</span>
           </div>
-          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Prove your patch compliance to clients with data they can verify</h3>
-          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">4-6 weeks after the appointment, PatchBook automatically sends your client a reminder to book their touch-up. They reply with their availability, and you recover those touch-up bookings without lifting a finger.</p>
+          <h3 style="font-size:1.05rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Prove compliance to any client with one click</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">Generate audit-ready compliance reports per client automatically. When a client or auditor asks for proof, you have it ready in seconds, not hours.</p>
         </div>
       </div>
     </div>
@@ -378,29 +385,29 @@
     <div style="max-width:1120px;margin:0 auto;">
       <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#a855f7;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">Built for</p>
       <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;letter-spacing:-0.015em;max-width:600px;margin-bottom:4rem;color:#e8f0f8;">
-        PMU and microblading artists who take compliance seriously
+        MSPs managing multiple clients and endpoints under compliance pressure
       </h2>
 
       <div class="grid-2col" style="gap:1.5rem;margin-bottom:2rem;">
         <div class="card" style="padding:2rem;">
-          <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;display:block;margin-bottom:1rem;">Solo artists & small teams</span>
-          <h3 style="font-size:1.15rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">You need automation, not bureaucracy</h3>
-          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">PatchBook is built for studios with 1-3 artists. It automates the compliance work without requiring a ton of setup. No admin overhead, just workflow magic that runs in the background.</p>
+          <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;display:block;margin-bottom:1rem;">Stop guessing your security posture</span>
+          <h3 style="font-size:1.15rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Never get caught off guard in a breach</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">PatchBook gives you real-time visibility into every unpatched endpoint across every client. When a critical CVE drops, you know which clients are exposed in seconds, not hours.</p>
         </div>
         <div class="card" style="padding:2rem;">
-          <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;display:block;margin-bottom:1rem;">Serious about your brand</span>
-          <h3 style="font-size:1.15rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Compliance is part of your promise</h3>
-          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">You know that patch tests, consent, and touch-ups aren't optional—they're the foundation of client safety and your reputation. PatchBook turns that into a documented system your insurance company will love.</p>
+          <span class="mono" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:#94a8b8;display:block;margin-bottom:1rem;">Protect your clients before it's too late</span>
+          <h3 style="font-size:1.15rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">Compliance tracking that runs itself</h3>
+          <p style="font-size:0.95rem;color:#94a8b8;line-height:1.65;">Patch compliance isn't a nice-to-have. It's the difference between keeping a client and losing them after a breach. PatchBook turns your patch data into audit-ready reports automatically.</p>
         </div>
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:0.65rem;">
-        <span class="tag">pmu-artists</span>
-        <span class="tag">microblading</span>
-        <span class="tag">patch-testing</span>
-        <span class="tag">consent-forms</span>
-        <span class="tag">touch-up-tracking</span>
-        <span class="tag">compliance-automation</span>
+        <span class="tag">msp-compliance</span>
+        <span class="tag">patch-management</span>
+        <span class="tag">endpoint-visibility</span>
+        <span class="tag">cve-alerts</span>
+        <span class="tag">audit-ready</span>
+        <span class="tag">rmm-integration</span>
       </div>
     </div>
   </section>
@@ -415,17 +422,17 @@
             We're onboarding 50 founding MSPs. Here's what you get.
           </h2>
           <p style="font-size:0.95rem;color:#94a8b8;line-height:1.7;max-width:440px;margin-bottom:2rem;">
-            We are onboarding a small group of PMU and microblading artists to test PatchBook before full launch.
+            We are onboarding a small group of MSPs managing 10+ clients to test PatchBook before full launch.
           </p>
 
           <!-- dir-122: "What you'll get" value prop block -->
           <p style="font-size:0.875rem;font-weight:600;color:#e8f0f8;margin-bottom:0.75rem;">What you'll get:</p>
           <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;margin-bottom:1.5rem;">
-            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Automated patch-test scheduling and consent tracking</p>
-            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Early access to the PMU compliance platform</p>
-            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Priority onboarding and direct access to the founder</p>
+            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Real-time patch visibility across all clients</p>
+            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Alerts on critical vulnerabilities</p>
+            <p style="display:flex;align-items:center;gap:0.625rem;color:rgba(232,240,248,0.75);margin:0;"><span style="width:5px;height:5px;border-radius:50%;background:#a855f7;flex-shrink:0;"></span>Audit-ready compliance tracking</p>
           </div>
-          <p style="font-size:0.8rem;color:#a855f7;font-weight:600;">First 50 MSPs get lifetime founding access and priority onboarding.</p>
+          <p style="font-size:0.8rem;color:#a855f7;font-weight:600;">First 50 MSPs get lifetime founding access and priority onboarding. Once spots are filled, onboarding closes before launch.</p>
         </div>
 
         <div>
@@ -440,40 +447,40 @@
           <form id="signup-form" onsubmit="handleSubmit(event)" style="display:flex;flex-direction:column;gap:1.25rem;">
             <div>
               <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">Work email <span style="color:#a855f7;">*</span></label>
-              <input id="email" type="email" required placeholder="you@studio.com" style="width:100%;height:2.75rem;padding:0 1rem;font-size:1rem;box-sizing:border-box;" />
+              <input id="email" type="email" required placeholder="you@yourmsp.com" style="width:100%;height:2.75rem;padding:0 1rem;font-size:1rem;box-sizing:border-box;" />
             </div>
             <!-- CRO: Progressive disclosure step 2 (hidden until email submit) -->
             <div id="form-step-2" style="display:none;flex-direction:column;gap:1.25rem;">
             <div>
               <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">First name</label>
-              <input id="first-name" type="text" placeholder="Sarah" style="width:100%;height:2.75rem;padding:0 1rem;font-size:1rem;box-sizing:border-box;" />
+              <input id="first-name" type="text" placeholder="Alex" style="width:100%;height:2.75rem;padding:0 1rem;font-size:1rem;box-sizing:border-box;" />
             </div>
 
             <!-- Progressive qualifying questions -->
             <div>
-              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">How many clients per month?</label>
+              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">How many client endpoints?</label>
               <select id="q-team-size" style="width:100%;height:2.75rem;padding:0 0.75rem;font-size:1rem;box-sizing:border-box;cursor:pointer;">
-                <option value="" disabled selected>Select your volume</option>
-                <option value="1-10">1-10 clients</option>
-                <option value="11-25">11-25 clients</option>
-                <option value="26-50">26-50 clients</option>
-                <option value="50+">50+ clients</option>
+                <option value="" disabled selected>Select endpoint count</option>
+                <option value="1-100">1-100 endpoints</option>
+                <option value="101-500">101-500 endpoints</option>
+                <option value="501-2000">501-2,000 endpoints</option>
+                <option value="2000+">2,000+ endpoints</option>
               </select>
             </div>
             <div>
-              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">Biggest workflow headache?</label>
+              <label style="display:block;font-size:0.875rem;font-weight:500;color:#e8f0f8;margin-bottom:0.375rem;">Primary RMM?</label>
               <select id="q-pain" style="width:100%;height:2.75rem;padding:0 0.75rem;font-size:1rem;box-sizing:border-box;cursor:pointer;">
-                <option value="" disabled selected>Select your top challenge</option>
-                <option value="patch-test-tracking">Patch test tracking</option>
-                <option value="consent-forms">Consent forms</option>
-                <option value="touch-up-scheduling">Touch-up scheduling</option>
-                <option value="all-of-above">All of the above</option>
+                <option value="" disabled selected>Select your RMM</option>
+                <option value="connectwise">ConnectWise Automate</option>
+                <option value="datto">Datto RMM</option>
+                <option value="ninja">NinjaRMM</option>
+                <option value="other">Other</option>
               </select>
             </div>
             
             </div>
             <button type="submit" id="submit-btn" class="btn-primary" style="width:100%;height:3rem;font-size:1rem;">
-              Claim Your Spot, See Unpatched Systems Now
+              See Which Endpoints Are Unpatched Right Now
             </button>
             <p style="font-size:0.75rem;color:rgba(180,210,230,0.65);text-align:center;margin:0;">By signing up you accept our <a href="/privacy.html" style="color:#a855f7;text-decoration:underline;">Privacy Policy</a> and analytics cookies. No spam — we will only contact you about PatchBook.</p>
 
@@ -536,8 +543,18 @@
       return utm;
     }
 
+    var formStep = 1;
+    function showStep2() {
+      if (formStep === 1) {
+        formStep = 2;
+        document.getElementById('form-step-2').style.display = 'flex';
+        document.getElementById('submit-btn').textContent = 'See Which Endpoints Are Unpatched Right Now';
+      }
+    }
+
     async function handleSubmit(e) {
       e.preventDefault();
+      if (formStep === 1) { showStep2(); return; }
       // Grant consent on submit — user is voluntarily engaging, enable full tracking
       grantConsent();
       var btn = document.getElementById('submit-btn');
@@ -595,7 +612,6 @@
       try { if (typeof gtag === 'function') gtag('event', 'conversion', { send_to: 'AW-18071371531/z6DhCLq9-JccEIv-jKlD', value: 1.0, currency: 'USD' }); } catch(ex) {}
 
       document.getElementById('signup-form').style.display = 'none';
-      showStep2();
           document.getElementById('success-message').style.display = 'block';
     }
 
