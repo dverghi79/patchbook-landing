@@ -269,6 +269,50 @@
     .flow-arrow { position: absolute; top: 1.5rem; right: -2.75rem; width: 2.5rem; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
     .flow-step:last-child .flow-arrow { display: none; }
     .flow-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* AHA MOMENT MORPHING ANIMATION */
+    .aha-wrap{max-width:900px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.5);background:#111113;}
+    .aha-chrome{background:#161618;padding:0.6rem 1rem;display:flex;align-items:center;gap:0.75rem;border-bottom:1px solid var(--border);}
+    .aha-dots span{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;}
+    .aha-status{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:600;padding:0.3rem 0.75rem;border-radius:8px;transition:all 0.6s ease;}
+    .aha-status.pain{background:rgba(239,68,68,0.12);color:#ef4444;}
+    .aha-status.syncing{background:rgba(168,85,247,0.12);color:#a855f7;}
+    .aha-status.done{background:rgba(34,197,94,0.12);color:#22c55e;}
+    .aha-body{padding:1.5rem 1.5rem 1rem;position:relative;}
+    .aha-caption{text-align:center;padding:0.75rem 0 1rem;font-size:1.1rem;font-weight:700;transition:all 0.5s ease;min-height:2.5rem;}
+    .aha-form{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;transition:all 0.8s ease;}
+    .aha-field{padding:0.6rem 0.75rem;border-radius:8px;font-size:0.75rem;font-family:'JetBrains Mono',monospace;transition:all 0.8s ease;position:relative;overflow:hidden;}
+    .aha-field-label{font-size:0.55rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.3rem;transition:color 0.6s ease;}
+    .aha-field-value{font-size:0.8rem;font-weight:500;transition:color 0.6s ease;}
+    .aha-field.full{grid-column:1/-1;}
+    .aha-form.state-pain .aha-field{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);}
+    .aha-form.state-pain .aha-field-label{color:rgba(239,68,68,0.6);}
+    .aha-form.state-pain .aha-field-value{color:var(--text-muted);}
+    .aha-form.state-pain .aha-field.has-error{border-color:#ef4444;box-shadow:0 0 0 1px rgba(239,68,68,0.3);}
+    .aha-form.state-pain .aha-field.has-error .aha-field-value{color:#ef4444;text-decoration:line-through;}
+    .aha-form.state-syncing .aha-field{background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.15);}
+    .aha-form.state-syncing .aha-field-label{color:rgba(168,85,247,0.6);}
+    .aha-form.state-syncing .aha-field-value{color:#a855f7;}
+    .aha-form.state-done .aha-field{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.18);}
+    .aha-form.state-done .aha-field-label{color:rgba(34,197,94,0.6);}
+    .aha-form.state-done .aha-field-value{color:var(--text-primary);}
+    .aha-form.state-done .aha-field.has-error{border-color:rgba(34,197,94,0.18);box-shadow:none;}
+    .aha-form.state-done .aha-field.has-error .aha-field-value{color:var(--text-primary);text-decoration:none;}
+    .aha-scan{height:2px;background:transparent;margin:0.75rem 0 0;border-radius:2px;overflow:hidden;position:relative;}
+    .aha-scan-bar{position:absolute;top:0;left:0;width:0;height:100%;border-radius:2px;transition:width 1.2s ease-in-out;}
+    .aha-timer-strip{display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.75rem;padding:0.5rem 0;font-family:'JetBrains Mono',monospace;font-size:0.75rem;transition:all 0.5s ease;min-height:2rem;}
+    @media (max-width:600px){.aha-form{grid-template-columns:1fr;}}
+    .closer-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:0 auto;}
+    .closer-card{border-radius:16px;padding:2rem 1.75rem;}
+    .closer-card-old{background:rgba(239,68,68,0.03);border:1px solid rgba(239,68,68,0.12);}
+    .closer-card-new{background:rgba(34,197,94,0.03);border:1px solid rgba(34,197,94,0.15);}
+    .closer-label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;font-family:'JetBrains Mono',monospace;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;}
+    .closer-item{display:flex;align-items:flex-start;gap:0.75rem;margin-bottom:1.15rem;}
+    .closer-item:last-child{margin-bottom:0;}
+    .closer-icon{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .closer-icon-x{background:rgba(239,68,68,0.1);}
+    .closer-icon-check{background:rgba(34,197,94,0.1);}
+    @media (max-width:768px){.closer-grid{grid-template-columns:1fr;gap:1rem;}}
   </style>
 </head>
 <body>
@@ -487,6 +531,79 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
+       AHA MOMENT SECTION
+       ═══════════════════════════════════════════ -->
+  <section style="padding:3rem 0 4rem;">
+    <div class="container">
+      <div class="aha-wrap">
+        <!-- Browser-style chrome -->
+        <div class="aha-chrome">
+          <div class="aha-dots">
+            <span style="background:#ef4444;"></span>
+            <span style="background:#fbbf24;"></span>
+            <span style="background:#22c55e;"></span>
+          </div>
+          <span style="font-size:0.7rem;color:var(--text-muted);font-weight:500;flex:1;margin-left:0.5rem;">app.patchbook.leanaistudio.com</span>
+          <div class="aha-status pain" id="aha-badge">EXPOSED</div>
+        </div>
+
+        <!-- Main content area -->
+        <div class="aha-body">
+          <div class="aha-caption" id="aha-caption">
+            Auditor asks: "Show me your patch compliance." You open a spreadsheet.
+          </div>
+
+          <div class="aha-form state-pain" id="aha-form">
+            <!-- Windows Servers -->
+            <div class="aha-field has-error">
+              <div class="aha-field-label">Windows Servers</div>
+              <div class="aha-field-value">Last patched... 47 days ago?</div>
+            </div>
+
+            <!-- Workstations -->
+            <div class="aha-field has-error">
+              <div class="aha-field-label">Workstations</div>
+              <div class="aha-field-value">Spreadsheet says 'done' - is it?</div>
+            </div>
+
+            <!-- Third-Party Apps -->
+            <div class="aha-field full has-error">
+              <div class="aha-field-label">Third-Party Apps</div>
+              <div class="aha-field-value">Chrome, Zoom, Adobe - who knows</div>
+            </div>
+
+            <!-- CVE Exposure -->
+            <div class="aha-field has-error">
+              <div class="aha-field-label">CVE Exposure</div>
+              <div class="aha-field-value">Found out from the news</div>
+            </div>
+
+            <!-- Compliance -->
+            <div class="aha-field has-error">
+              <div class="aha-field-label">Compliance</div>
+              <div class="aha-field-value">Auditor asks, you scramble</div>
+            </div>
+
+            <!-- Fleet Overview -->
+            <div class="aha-field full has-error">
+              <div class="aha-field-label">Fleet Overview</div>
+              <div class="aha-field-value">340 endpoints - no single view</div>
+            </div>
+          </div>
+
+          <div class="aha-scan">
+            <div class="aha-scan-bar" id="aha-scan-bar" style="background:#ef4444;"></div>
+          </div>
+
+          <div class="aha-timer-strip" id="aha-timer">
+            <span>Last full audit: 3 months ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
        PRODUCT PREVIEW / DASHBOARD MOCKUP
        ═══════════════════════════════════════════ -->
   <section style="padding:3rem 0 5rem;">
@@ -674,6 +791,108 @@
           </div>
           <h3 style="font-size:1.05rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">Generate Audit-Ready Reports</h3>
           <p style="font-size:0.9rem;color:var(--text-secondary);line-height:1.6;">One-click compliance reports by client, by severity, by timeframe. PDF-ready for client reviews, insurance audits, or regulatory checks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       LOGICAL CLOSER: OLD WAY VS PATCHBOOK
+       ═══════════════════════════════════════════ -->
+  <section style="padding:4rem 0 5rem;">
+    <div class="container">
+      <p class="section-label reveal">The better way</p>
+      <h2 class="section-title reveal" style="margin-bottom:3rem;">
+        <span class="gradient-text">PatchBook</span> does patch compliance the way it should work
+      </h2>
+
+      <div class="closer-grid">
+        <!-- Old Way -->
+        <div class="closer-card closer-card-old reveal reveal-delay-1">
+          <div class="closer-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            Old Way
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-x">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">Track patches in spreadsheets that are outdated the moment you save them</p>
+            </div>
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-x">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">Find out about critical CVEs from the news instead of your tools</p>
+            </div>
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-x">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">Scramble for compliance evidence every time an auditor asks</p>
+            </div>
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-x">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">No visibility into third-party app versions across the fleet</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Way — PatchBook -->
+        <div class="closer-card closer-card-new reveal reveal-delay-2">
+          <div class="closer-label">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            With PatchBook
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">Real-time patch status for every endpoint - always current</p>
+            </div>
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">CVE alerts with affected endpoints identified before exploits hit</p>
+            </div>
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">One-click compliance reports for SOC 2, HIPAA, CIS - audit-ready</p>
+            </div>
+          </div>
+
+          <div class="closer-item">
+            <div class="closer-icon closer-icon-check">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style="flex:1;">
+              <p style="margin:0;font-size:0.85rem;font-weight:600;color:var(--text-primary);line-height:1.5;">Full third-party app inventory with version tracking and auto-alerts</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -983,6 +1202,137 @@
       }
       return false;
     }
+
+    /* ── AHA MOMENT ANIMATION SEQUENCE ── */
+    (function() {
+      var ahaWrap = document.querySelector('.aha-wrap');
+      if (!ahaWrap) return;
+
+      var badge = document.getElementById('aha-badge');
+      var caption = document.getElementById('aha-caption');
+      var form = document.getElementById('aha-form');
+      var scanBar = document.getElementById('aha-scan-bar');
+      var timerStrip = document.getElementById('aha-timer');
+      var fields = document.querySelectorAll('.aha-field');
+
+      var states = [
+        {
+          badge: 'EXPOSED',
+          badgeClass: 'pain',
+          caption: 'Auditor asks: "Show me your patch compliance." You open a spreadsheet.',
+          formClass: 'state-pain',
+          timer: 'Last full audit: 3 months ago',
+          scanWidth: '0%',
+          scanColor: '#ef4444',
+          fieldUpdates: {
+            0: { label: 'Windows Servers', value: 'Last patched... 47 days ago?', error: true },
+            1: { label: 'Workstations', value: 'Spreadsheet says "done" - is it?', error: true },
+            2: { label: 'Third-Party Apps', value: 'Chrome, Zoom, Adobe - who knows', error: true },
+            3: { label: 'CVE Exposure', value: 'Found out from the news', error: true },
+            4: { label: 'Compliance', value: 'Auditor asks, you scramble', error: true },
+            5: { label: 'Fleet Overview', value: '340 endpoints - no single view', error: true }
+          }
+        },
+        {
+          badge: 'SCANNING',
+          badgeClass: 'syncing',
+          caption: 'PatchBook scanning all endpoints for patch status...',
+          formClass: 'state-syncing',
+          timer: 'Scanning servers · workstations · third-party apps...',
+          scanWidth: '65%',
+          scanColor: '#a855f7',
+          fieldUpdates: {
+            0: { label: 'Windows Servers', value: '12/12 patched · KB5034441 · 0 critical', error: false },
+            1: { label: 'Workstations', value: '148/152 patched · 4 pending reboot', error: false },
+            2: { label: 'Third-Party Apps', value: 'Chrome 124 · Zoom 6.0 · Adobe 24.1 · all current', error: false },
+            3: { label: 'CVE Exposure', value: '0 critical CVEs · 2 medium · remediated', error: false },
+            4: { label: 'Compliance', value: 'SOC 2 report ready · 98.7% patch rate · exportable', error: false },
+            5: { label: 'Fleet Overview', value: '340 endpoints · 97.4% compliant · 12 need attention', error: false }
+          }
+        },
+        {
+          badge: 'COMPLIANT',
+          badgeClass: 'done',
+          caption: '98.7% patch compliance. Report exported. Audit-ready.',
+          formClass: 'state-done',
+          timer: '340 endpoints scanned · 98.7% compliant · report ready',
+          scanWidth: '100%',
+          scanColor: '#22c55e',
+          fieldUpdates: {
+            0: { label: 'Windows Servers', value: '12/12 patched · KB5034441 · 0 critical', error: false },
+            1: { label: 'Workstations', value: '148/152 patched · 4 pending reboot', error: false },
+            2: { label: 'Third-Party Apps', value: 'Chrome 124 · Zoom 6.0 · Adobe 24.1 · all current', error: false },
+            3: { label: 'CVE Exposure', value: '0 critical CVEs · 2 medium · remediated', error: false },
+            4: { label: 'Compliance', value: 'SOC 2 report ready · 98.7% patch rate · exportable', error: false },
+            5: { label: 'Fleet Overview', value: '340 endpoints · 97.4% compliant · 12 need attention', error: false }
+          }
+        }
+      ];
+
+      var currentState = 0;
+      var cycleTiming = [3000, 4500, 6000, 10000]; // pain → syncing → done → pause → repeat
+
+      function updateAha() {
+        var state = states[currentState];
+
+        // Update badge
+        badge.textContent = state.badge;
+        badge.className = 'aha-status ' + state.badgeClass;
+
+        // Update caption
+        caption.textContent = state.caption;
+
+        // Update form class
+        form.className = 'aha-form ' + state.formClass;
+
+        // Update scan bar
+        scanBar.style.width = state.scanWidth;
+        scanBar.style.background = state.scanColor;
+
+        // Update timer
+        timerStrip.textContent = state.timer;
+
+        // Update fields
+        fields.forEach(function(field, i) {
+          if (state.fieldUpdates[i]) {
+            var update = state.fieldUpdates[i];
+            var label = field.querySelector('.aha-field-label');
+            var value = field.querySelector('.aha-field-value');
+            label.textContent = update.label;
+            value.textContent = update.value;
+            if (update.error) {
+              field.classList.add('has-error');
+            } else {
+              field.classList.remove('has-error');
+            }
+          }
+        });
+      }
+
+      // IntersectionObserver to start animation when section is visible
+      if ('IntersectionObserver' in window) {
+        var ahaObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+              entry.target.dataset.animated = 'true';
+              startAhaAnimation();
+              ahaObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        ahaObserver.observe(ahaWrap);
+      } else {
+        startAhaAnimation();
+      }
+
+      function startAhaAnimation() {
+        updateAha();
+        setInterval(function() {
+          currentState = (currentState + 1) % states.length;
+          updateAha();
+        }, cycleTiming[currentState] || 10000);
+      }
+    })();
   </script>
 
   <!-- Floating "Book a Call" Badge -->
